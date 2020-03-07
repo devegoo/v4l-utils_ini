@@ -28,6 +28,12 @@
 /*
  * FastSatFinder *.ini format for DVB-S, DVB-S2
  */
+static const char *fsf_parse_delivery_system[] = {
+	[SYS_DVBS]  = "S",
+	[SYS_DVBS2] = "S2",
+};
+
+
 static const char *fsf_parse_modulation[] = {
 	[APSK_16] =  "16APSK",
 	[APSK_32] =  "32APSK",
@@ -85,14 +91,12 @@ static const struct dvb_parse_table sys_dvbs2_table[] = {
 	{ DTV_INNER_FEC, PTABLE(fsf_parse_code_rate) },
 	{ DTV_ROLLOFF, PTABLE(fsf_parse_rolloff) },
 	{ DTV_MODULATION, PTABLE(fsf_parse_modulation) },
-	{ DTV_STREAM_ID, NULL, 0, 0, 1, 0 },
-	{ DTV_PLS_CODE, NULL, 0, 0, 1, -1 },
-	{ DTV_PLS_MODE, NULL, 0, 0, 1, -1 },
+	{ DTV_DELIVERY_SYSTEM, PTABLE(fsf_parse_delivery_system) },
 };
 
 const struct dvb_parse_file fsf_file_format = {
 	.has_delsys_id = 1,
-	.delimiter = ",\n\t",
+	.delimiter = "..=\n",",\n",";\n"
 	.formats = {
 	 {
 			.id		= "S",
