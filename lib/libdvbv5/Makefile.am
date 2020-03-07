@@ -61,6 +61,7 @@ libdvbv5_la_SOURCES = \
 	crc32.c \
 	countries.c \
 	dvb-legacy-channel-format.c \
+	dvb-fastsatfinder-format.c \
 	dvb-zap-format.c \
 	dvb-vdr-format.c \
 	dvb-v5.c	 \
