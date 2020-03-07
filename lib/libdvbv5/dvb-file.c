@@ -987,7 +987,7 @@ static char *dvb_vchannel(struct dvb_v5_fe_parms_priv *parms,
 		size_t len;
 		int r;
 
-		len = d->length / 4;
+		len = d->length / sizeof(d->lcn);
 		for (i = 0; i < len; i++) {
 			if (service_id == d->lcn[i].service_id) {
 				r = asprintf(&buf, "%d.%d",
@@ -1342,7 +1342,7 @@ int dvb_store_channel(struct dvb_file **dvb_file,
 			dvb_log(_("Storing as channel %s"), channel);
 		vchannel = dvb_vchannel(parms, dvb_scan_handler->nit, service->service_id);
 
-		if (dvb_scan_handler->nit && dvb_scan_handler->nit->transport) {
+		if (dvb_scan_handler->nit->transport) {
 			network_id = dvb_scan_handler->nit->transport->network_id;
 			transport_id = dvb_scan_handler->nit->transport->transport_id;
 		}
@@ -1412,7 +1412,9 @@ enum dvb_file_formats dvb_parse_format(const char *name)
 		return FILE_DVBV5;
 	if (!strcasecmp(name, "VDR"))
 		return FILE_VDR;
-
+    if (!strcasecmp(name, "FSF"))
+		return FILE_FSF;
+    
 	fprintf(stderr, _("File format %s is unknown\n"), name);
 	return FILE_UNKNOWN;
 }
@@ -1496,6 +1498,11 @@ struct dvb_file *dvb_read_file_format(const char *fname,
 		dvb_file = dvb_parse_format_oneline(fname,
 						    delsys,
 						    &channel_file_zap_format);
+		break;
+    case FILE_FSF:
+		dvb_file = dvb_parse_format_oneline(fname,
+						    delsys,
+						    &channel_file_fsf_format);
 		break;
 	case FILE_DVBV5:
 		dvb_file = dvb_read_file(fname);
