@@ -56,7 +56,7 @@ struct arguments {
 };
 
 static const struct argp_option options[] = {
-	{"input-format",	'I',	N_("format"),	0, N_("Valid input formats: ZAP, CHANNEL, DVBV5"), 0},
+	{"input-format",	'I',	N_("format"),	0, N_("Valid input formats: ZAP, CHANNEL, DVBV5, FSF"), 0},
 	{"output-format",	'O',	N_("format"),	0, N_("Valid output formats: VDR, ZAP, CHANNEL, DVBV5"), 0},
 	{"delsys",		's',	N_("system"),	0, N_("Delivery system type. Needed if input or output format is ZAP"), 0},
 	{"help",        '?',	0,		0,	N_("Give this help list"), -1},
