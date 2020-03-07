@@ -235,6 +235,7 @@ enum dvb_file_formats {
 	FILE_CHANNEL,
 	FILE_DVBV5,
 	FILE_VDR,
+    FILE_FSF,
 };
 
 struct dvb_v5_descriptors;
@@ -297,7 +298,7 @@ extern const struct dvb_parse_file channel_file_zap_format;
 /*
  * Prototypes for the several functions defined at dvb-file.c
  */
-
+extern const struct dvb_parse_file channel_file_fsf_format;
 /**
  * @brief Read a file at libdvbv5 format
  * @ingroup file
