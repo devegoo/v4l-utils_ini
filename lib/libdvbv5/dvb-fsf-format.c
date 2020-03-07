@@ -69,17 +69,6 @@ static const char *fsf_parse_rolloff[] = {
 	[ROLLOFF_AUTO] = "AUTO",
 };
 
-static const struct dvb_parse_table sys_atsc_table[] = {
-	{ DTV_FREQUENCY, NULL, 0 },
-	{ DTV_MODULATION, PTABLE(fsf_parse_modulation) },
-};
-
-static const struct dvb_parse_table sys_dvbc_table[] = {
-	{ DTV_FREQUENCY, NULL, 0 },
-	{ DTV_SYMBOL_RATE, NULL, 0 },
-	{ DTV_INNER_FEC, PTABLE(fsf_parse_code_rate) },
-	{ DTV_MODULATION, PTABLE(fsf_parse_modulation) },
-};
 
 /* Note: On DVB-S, frequency is divided by 1000 */
 static const struct dvb_parse_table sys_dvbs_table[] = {
@@ -101,7 +90,7 @@ static const struct dvb_parse_table sys_dvbs2_table[] = {
 	{ DTV_PLS_MODE, NULL, 0, 0, 1, -1 },
 };
 
-const struct dvb_parse_file channel_file_format = {
+const struct dvb_parse_file fsf_file_format = {
 	.has_delsys_id = 1,
 	.delimiter = ",\n\t",
 	.formats = {
