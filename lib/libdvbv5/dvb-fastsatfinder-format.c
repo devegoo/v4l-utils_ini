@@ -103,7 +103,7 @@ static const struct dvb_parse_table sys_dvbs2_table[] = {
 
 const struct dvb_parse_file channel_file_format = {
 	.has_delsys_id = 1,
-	.delimiter = " \n\t",
+	.delimiter = ",\n\t",
 	.formats = {
 	 {
 			.id		= "S",
